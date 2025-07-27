@@ -16,8 +16,6 @@ class Task(models.Model):
     def __str__(self):
         return self.title + " - " + self.project.name
 
-from django.db import models
-
 class Estudiante(models.Model):
     nombre = models.CharField(max_length=100)
     carrera = models.CharField(max_length=100)

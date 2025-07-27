@@ -1,12 +1,21 @@
-{% extends "layouts/base.html" %} {% block content %}
+{% extends "layouts/base.html" %}
+{% block content %}
 <div class="container">
   <h1>Control de Estudiantes</h1>
 
-  <form method="post" action="{% url 'crear_estudiante' %}">
+  {% if editando %}
+    <h2>Editando estudiante</h2>
+    <form method="post" action="{% url 'editar_estudiante' estudiante_id %}">
+  {% else %}
+    <h2>Agregar nuevo estudiante</h2>
+    <form method="post" action="{% url 'crear_estudiante' %}">
+  {% endif %}
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Guardar</button>
   </form>
+
+  <hr>
 
   <table>
     <thead>
@@ -41,3 +50,4 @@
   </table>
 </div>
 {% endblock %}
+
