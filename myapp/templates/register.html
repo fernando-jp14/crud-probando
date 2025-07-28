@@ -1,0 +1,35 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+
+{% block title %}Registro de Usuario{% endblock %}
+
+{% block content %}
+<div class="register-container">
+  <h2>Registro</h2>
+  <form method="post" action="{% url 'register_view' %}">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+
+    <label for="id_username">Usuario:</label>
+    {{ form.username }}
+
+    <label for="id_first_name">Nombre:</label>
+    {{ form.first_name }}
+
+    <label for="id_last_name">Apellido:</label>
+    {{ form.last_name }}
+
+    <label for="id_email">Correo:</label>
+    {{ form.email }}
+
+    <label for="id_password">Contraseña:</label>
+    {{ form.password }}
+
+    <button type="submit">Registrar</button>
+  </form>
+</div>
+{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'register.css' %}">
+{% endblock %}

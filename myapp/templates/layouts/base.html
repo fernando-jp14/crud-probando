@@ -6,24 +6,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% block title %}Control de Estudiantes{% endblock %}</title>
   <link rel="stylesheet" href="{% static 'style.css' %}">
+  {% block extra_head %}{% endblock %}
 </head>
+
 <body>
-
-  <!-- Navegación -->
-  <nav>
-    <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="/about">About</a></li>
-      <li><a href="/projects">Projects</a></li>
-      <li><a href="/tasks">Task</a></li>
-    </ul>
+  <!-- Menú superior -->
+  <nav style="padding: 10px; background-color: #f0f0f0;">
+    {% if request.user.is_authenticated %}
+      Bienvenido, {{ request.user.first_name }} |
+      <a href="{% url 'logout_view' %}">Cerrar sesión</a>
+    {% endif %}
   </nav>
-
-  <!-- Contenido específico de cada página -->
   {% block content %}{% endblock %}
 
   <!-- Scripts (si tienes JS) -->
   <script src="{% static 'script.js' %}"></script>
 </body>
-</html>
 
+</html>
