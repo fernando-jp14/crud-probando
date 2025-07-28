@@ -1,7 +1,9 @@
 {% extends "layouts/base.html" %}
 {% block content %}
 <div class="container">
+  
   <h1>Control de Estudiantes</h1>
+  <h2>Hola, {{ request.user.first_name }}. Bienvenido al sistema de estudiantes.</h2>
 
   {% if editando %}
     <h2>Editando estudiante</h2>
@@ -12,7 +14,7 @@
   {% endif %}
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Guardar</button>
+    <button type="submit">Agregar</button>
   </form>
 
   <hr>
@@ -43,7 +45,7 @@
       </tr>
       {% empty %}
       <tr>
-        <td colspan="6">No hay estudiantes registrados.</td>
+        
       </tr>
       {% endfor %}
     </tbody>

@@ -1,7 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Estudiante
-from .forms import EstudianteForm
+from .forms import EstudianteForm, RegistroForm, LoginForm
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
+@login_required(login_url='login_view')
 def index(request):
     estudiantes = Estudiante.objects.all()
     form = EstudianteForm()
@@ -39,6 +44,37 @@ def editar_estudiante(request, id):
 def eliminar_estudiante(request, id):
     estudiante = get_object_or_404(Estudiante, id=id)
     estudiante.delete()
+    return redirect('index')
+
+def login_view(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('index')
+        else:
+            messages.error(request, 'Usuario o contraseña incorrectos')
+            return redirect('login_view')
+    else:
+        form = LoginForm()
+    return render(request, 'login.html', {'form': form})
+
+def register_view(request):
+    if request.method == 'POST':
+        form = RegistroForm(request.POST)
+        if form.is_valid():
+            usuario = form.save(commit=False)
+            usuario.set_password(form.cleaned_data['password'])  # encripta la contraseña
+            usuario.save()
+            return redirect('login_view')
+    else:
+        form = RegistroForm()
+    return render(request, 'register.html', {'form': form})
+
+def logout_view(request):
+    logout(request)
     return redirect('index')
 
  
