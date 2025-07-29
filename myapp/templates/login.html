@@ -26,6 +26,15 @@
         {% endfor %}
     </ul>
     {% endif %}
+    {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>
+        {{ message }}
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
 
     <div style="text-align:center; margin-top:16px;">
       ¿No te has registrado?
@@ -36,6 +45,7 @@
 {% endblock %}
 
 {% block extra_head %}
+<link rel="stylesheet" href="{% static 'login.css' %}">
 <link rel="stylesheet" href="{% static 'login.css' %}">
 {% endblock %}
 
