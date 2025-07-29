@@ -23,21 +23,24 @@ def guardar_estudiante_form(request, form):
         return True
     return False
 
+from .models import Estudiante
+
 def crear_estudiante(request):
     if request.method == 'POST':
         form = EstudianteForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('index')  # solo redirige si se guardó bien
+            return redirect('index')
 
-        # Si el formulario no es válido, vuelve a mostrar el index con errores
-        estudiantes = Estudiante.objects.all()
+        # Si no es válido, mostrar con orden correcto
+        estudiantes = Estudiante.objects.all().order_by('id')
         return render(request, 'index.html', {
             'form': form,
             'estudiantes': estudiantes,
             'editando': False,
             'mostrar_menu': True
         })
+
 
     return redirect('index')
 
