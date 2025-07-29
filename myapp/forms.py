@@ -8,6 +8,11 @@ class EstudianteForm(forms.ModelForm):
     class Meta:
         model = Estudiante
         fields = ['nombre', 'carrera', 'ciclo', 'correo']
+    def clean_ciclo(self):
+        ciclo = self.cleaned_data.get('ciclo')
+        if not ciclo.isdigit():
+            raise forms.ValidationError("Debe ingresar un número.")
+        return ciclo
 
 class RegistroForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)

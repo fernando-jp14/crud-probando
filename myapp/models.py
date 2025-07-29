@@ -17,13 +17,18 @@ class Task(models.Model):
         return self.title + " - " + self.project.name
 
 class Estudiante(models.Model):
-    nombre = models.CharField(max_length=100)
-    carrera = models.CharField(max_length=100)
-    ciclo = models.CharField(max_length=20)
-    correo = models.EmailField()
+    nombre = models.CharField(max_length=100, verbose_name="Nombre completo")
+    carrera = models.CharField(max_length=100, verbose_name="Carrera")
+    ciclo = models.CharField(max_length=20, verbose_name="Ciclo académico")
+    correo = models.EmailField(unique=True, verbose_name="Correo institucional")
 
-    def __str__(self):
-        return self.nombre
+    class Meta:
+        verbose_name = "Estudiante"
+        verbose_name_plural = "Estudiantes"
+        ordering = ["nombre"] 
+
+    def str(self):
+        return f"{self.nombre} - {self.carrera}"
 
 
 
