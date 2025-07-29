@@ -1,10 +1,13 @@
 {% extends "layouts/base.html" %}
-{% block content %}
-<div class="container">
-  
-  <h1>Control de Estudiantes</h1>
-  <h2>Hola, {{ request.user.first_name }}. Bienvenido al sistema de estudiantes.</h2>
+{% load static %}
 
+{% block content %}
+
+<h1>Control de Estudiantes</h1>
+
+  <h2 class="hello">Hola, {{ request.user.first_name }}. Bienvenido al sistema de estudiantes.</h2>
+
+<div class="container1">
   {% if editando %}
     <h2>Editando estudiante</h2>
     <form method="post" action="{% url 'editar_estudiante' estudiante_id %}">
@@ -14,11 +17,12 @@
   {% endif %}
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Agregar</button>
+    <button type="submit">{% if editando %}Guardar{% else %}Agregar{% endif %}</button>
   </form>
+</div>
 
-  <hr>
-
+<div class="container">
+  <h2>Lista de estudiantes</h2>
   <table>
     <thead>
       <tr>
@@ -51,5 +55,9 @@
     </tbody>
   </table>
 </div>
+{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'styles.css' %}">
 {% endblock %}
 
