@@ -20,7 +20,7 @@ Este es un mini proyecto integral donde desarrollamos una aplicación CRUD con D
 ## Instalación y ejecución del proyecto
 
   ### Requisitos
-  - Python 3.10+
+  - Python 3.10
   - Django 4.x
   - Git
   - pip
