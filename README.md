@@ -40,10 +40,10 @@ Este es un mini proyecto integral donde desarrollamos una aplicación CRUD con D
 https://trello.com/invite/b/687e68fb88aab73bfebe3f70/ATTI7159094debcb426c4b3179655b6800cbB52F11BD/sprint-grupo-1
 
 ## Estrcutura del Repositorio:
-├── crud-probando
+├── crud-probando/
 ├── .github/workflows
-├── mi_proyecto
-├── myapp
+├── mi_proyecto/
+├── myapp/
 ├── .gitignore
 ├── manage.py
 ├── requirements.txt
