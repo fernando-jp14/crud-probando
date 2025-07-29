@@ -13,7 +13,8 @@ def index(request):
     return render(request, 'index.html', {
         'estudiantes': estudiantes,
         'form': form,
-        'editando': False
+        'editando': False,
+        'mostrar_menu': True
     })
 
 def guardar_estudiante_form(request, form):
@@ -25,7 +26,19 @@ def guardar_estudiante_form(request, form):
 def crear_estudiante(request):
     if request.method == 'POST':
         form = EstudianteForm(request.POST)
-        guardar_estudiante_form(request, form)
+        if form.is_valid():
+            form.save()
+            return redirect('index')  # solo redirige si se guardó bien
+
+        # Si el formulario no es válido, vuelve a mostrar el index con errores
+        estudiantes = Estudiante.objects.all()
+        return render(request, 'index.html', {
+            'form': form,
+            'estudiantes': estudiantes,
+            'editando': False,
+            'mostrar_menu': True
+        })
+
     return redirect('index')
 
 def editar_estudiante(request, id):
@@ -41,7 +54,8 @@ def editar_estudiante(request, id):
         'form': form,
         'estudiantes': estudiantes,
         'editando': True,
-        'estudiante_id': estudiante.id
+        'estudiante_id': estudiante.id,
+        'mostrar_menu': True
     })
 
 

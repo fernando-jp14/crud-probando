@@ -1,57 +1,62 @@
 body {
-  background: #215cb6;
-  font-family: Arial, Helvetica, sans-serif;
+  background: #d7f0e2; /* Verde suave */
+  font-family: "Jost", sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 .register-container {
-  max-width: 350px;
-  margin: 70px auto;
-  background: #fff;
+  max-width: 400px;
+  margin: 80px auto;
+  background: #ffffff;
   padding: 30px 40px;
-  border-radius: 10px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+  border-radius: 12px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1);
 }
 
 h2 {
   text-align: center;
-  color: #333;
+  color: #2f4f4f;
   margin-bottom: 24px;
+  font-weight: 600;
 }
 
 form label {
   display: block;
   margin-bottom: 6px;
-  color: #555;
-  font-weight: bold;
+  color: #444;
+  font-weight: 500;
 }
 
 form input {
-  width: 95%;
-  padding: 8px 10px;
-  margin-bottom: 16px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 18px;
+  border: 1px solid #b5d1c5;
+  border-radius: 6px;
   font-size: 16px;
-  transition: border-color 0.2s;
+  transition: border-color 0.3s;
+  background-color: #f9fdfb;
 }
 
 form input:focus {
-  border-color: #007bff;
+  border-color: #3a6351;
   outline: none;
 }
 
 button[type="submit"] {
   width: 100%;
-  padding: 10px;
-  background: #007bff;
-  color: #fff;
+  padding: 12px;
+  background: #3a6351;
+  color: #ffffff;
   border: none;
-  border-radius: 5px;
-  font-size: 18px;
+  border-radius: 6px;
+  font-size: 17px;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background 0.3s;
+  font-weight: bold;
 }
 
 button[type="submit"]:hover {
-  background: #0056b3;
+  background: #2c4f41;
 }

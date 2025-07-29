@@ -17,14 +17,16 @@
     {{ form.password }}
 
     <button type="submit">Ingresar</button>
+
     {% if messages %}
-    <ul class="messages">
-      {% for message in messages %}
-      <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>
-        {{ message }}
-        </li>
+      <div class="alert-container">
+        {% for message in messages %}
+          <div class="custom-alert {{ message.tags|default:'info' }}">
+            <img src="{% static 'warning-icon.png' %}" alt="Advertencia" class="alert-icon">
+            <span>{{ message }}</span>
+          </div>
         {% endfor %}
-    </ul>
+      </div>
     {% endif %}
 
     <div style="text-align:center; margin-top:16px;">
@@ -39,18 +41,6 @@
 <link rel="stylesheet" href="{% static 'login.css' %}">
 {% endblock %}
 
-#lo que agregue:
-
-{% if messages %}
-  <div class="alert-container">
-    {% for message in messages %}
-      <div class="custom-alert {{ message.tags|default:'info' }}">
-        <img src="{% static 'warning-icon.png' %}" alt="Advertencia" class="alert-icon">
-        <span>{{ message }}</span>
-      </div>
-    {% endfor %}
-  </div>
-{% endif %}
 
 
 
