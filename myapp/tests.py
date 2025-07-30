@@ -49,19 +49,5 @@ class EstudianteTestCase(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertFalse(Estudiante.objects.filter(id=self.estudiante.id).exists())
 
-    # 🚨 Test erróneo intencional para activar CI con error
-    def test_crear_estudiante_erroneo(self):
-        data = {
-            'nombre': 'Carlos Mal',
-            'carrera': 'Abogacía',
-            'ciclo': '1',
-            'correo': 'carlos@example.com'
-        }
-        response = self.client.post(reverse('crear_estudiante'), data)
-        
-        # ❌ Intencionalmente ponemos una condición falsa
-        self.assertEqual(Estudiante.objects.count(), 99)  # Esto está mal a propósito
-
-
 
 
